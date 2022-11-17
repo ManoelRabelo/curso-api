@@ -1,4 +1,4 @@
-package br.com.dicasdeumdev.domain;
+package br.com.dicasdeumdev.api.domain;
 
 import lombok.*;
 

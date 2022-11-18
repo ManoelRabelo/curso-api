@@ -1,7 +1,7 @@
 package br.com.dicasdeumdev.api.config;
 
 import br.com.dicasdeumdev.api.domain.User;
-import br.com.dicasdeumdev.api.repositories.UserReposity;
+import br.com.dicasdeumdev.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import java.util.List;
 public class LocalConfig {
 
     @Autowired
-    private UserReposity reposity;
+    private UserRepository reposity;
     @Bean
     public void startDB() {
         User u1 = new User(null, "Manoel","manoel@gmail.com","123");

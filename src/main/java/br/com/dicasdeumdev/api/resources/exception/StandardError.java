@@ -12,6 +12,6 @@ import java.time.LocalDateTime;
 public class StandardError {
     private LocalDateTime timeStanp;
     private Integer status;
-    private String errot;
+    private String error;
     private String path;
 }

@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class UserResourceTest {
@@ -101,7 +101,7 @@ class UserResourceTest {
     @Test
     void WhenUpdateThenReturnSuccess() {
         when(service.update(userDTO)).thenReturn(user);
-        when(mapper.map(any(),any())).thenReturn(userDTO);
+        when(mapper.map(any(), any())).thenReturn(userDTO);
 
         ResponseEntity<UserDTO> response = resource.update(ID, userDTO);
 
@@ -117,7 +117,15 @@ class UserResourceTest {
     }
 
     @Test
-    void delete() {
+    void whenDeleteThenReturnSuccess() {
+        doNothing().when(service).delete(anyInt());
+
+        ResponseEntity<UserDTO> response = resource.delete(ID);
+
+        assertNotNull(response);
+        assertEquals(ResponseEntity.class, response.getClass());
+        verify(service, times(1)).delete(anyInt());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
     private void startUser() {
